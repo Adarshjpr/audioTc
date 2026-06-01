@@ -8,8 +8,8 @@ const mongoDb = require("mongoose")
         type:String,
         unique: true
     } ,
-    paswords:String
+    passwords:String
 
 })
 
-module.export = mongoDb.model("user" , UserSchema)
+module.exports = mongoDb.model("user" , UserSchema)
