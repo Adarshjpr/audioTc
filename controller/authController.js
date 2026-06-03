@@ -4,8 +4,9 @@
 
 const user = require('../model/user')
 const bcrypt = require('bcrypt')
-const register = async(req , res)=>{
 const Jwt  = require('jsonwebtoken')
+
+const register = async(req , res)=>{
 try {
       
 // step 1:  user get  name email password

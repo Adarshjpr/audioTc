@@ -10,12 +10,21 @@ app.use(express.urlencoded({ extended: true }));
  connectDB()
 
 const authUser = require('./Routes/UsersRoutes')
+const protectedRoute = require('./middleware/authMiddleware')
+
 
  app.get('/' ,(req , res)=>{
    
    res.send("hello world ")
  })
 
+ app.get('/dashboard',protectedRoute , (req , res)=>{
+
+  res.status(200).json({
+    message: " welcome to  dashBoard",
+    email: req.user.email
+  })
+ })
 app.use('/app' , authUser)
 
 
