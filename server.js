@@ -15,8 +15,10 @@ app.use(express.urlencoded({ extended: true }));
 const authUser = require('./Routes/UsersRoutes')
 const protectedRoute = require('./middleware/authMiddleware')
  const upload = require('./middleware/uploadMiddleware')
+const transcribeRoute = require('./Routes/TranscribeRouter')
 
-
+app.use('/api' , transcribeRoute);
+ 
  app.get('/' ,(req , res)=>{
    
    res.send("hello world ")
