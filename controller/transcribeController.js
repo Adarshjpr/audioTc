@@ -1,6 +1,7 @@
 
 const busboy = require('busboy');
 require('dotenv').config()
+const trancribeModel = require('../model/transcribe') 
 
 const transcribe = async (req, res) => {
 
@@ -15,6 +16,7 @@ const transcribe = async (req, res) => {
             headers: req.headers
         })
 req.pipe(bb)
+// .pipe ke kiye matlan h ki busboy ke andar data ko bhej dena  =>  busboy ke andar data aayega  =>  busboy file event trigger karega  =>  busboy file event ke andar mujhe file mil jayega
 
         // event   file  => fieldname  , file , info
         //  client file  enevt file  trigger 
@@ -69,13 +71,22 @@ console.log("Deepgram Key:", process.env.DEEPGRAM_API_KEY);
 
 
                 const data = await response.json();
+const transcribeText =  data?.results?.channels[0]?.alternatives[0]?.transcript;
 
                 console.log(data)
+ const save =     trancribeModel.create({
+    userId:  req.user._id,
+    transcribe :transcribeText,
+fileName : info.filename
+  })
+//  data base me chala jaiye 
+
+
 
 return res.status(200).json({
     success: true,
-    transcript: data?.results?.channels[0]?.alternatives[0]?.transcript
- 
+    transcript: transcribeText,
+   saved_id : save._id
 });
 
             })
@@ -91,6 +102,8 @@ return res.status(200).json({
 
     } catch (error) {
 
+
+        
     }
 
 
