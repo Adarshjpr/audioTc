@@ -23,7 +23,7 @@ app.use('/api' , transcribeRoute);
    
    res.send("hello world proteced ")
  })
- app.get('/' , protectedRoute,(req , res)=>{
+ app.get('/' , (req , res)=>{
    
    res.send("hello world  ")
  })
