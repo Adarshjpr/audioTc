@@ -5,6 +5,7 @@ const trancribeModel = require('../model/transcribe')
 
 const transcribe = async (req, res) => {
 
+    console.log("req  => " , req.user.id)
     //  multer me data send karne ke liye form data  =>  multipart/form-data
     // bb =>  multipart/form-data  =>  file ko chote chote tukro me tod ke bhejta hai   =>  streaming + buffer
 
@@ -69,13 +70,13 @@ console.log("Deepgram Key:", process.env.DEEPGRAM_API_KEY);
 
                 })
 
-
+console.log(" user._id " ,req.user._id)
                 const data = await response.json();
 const transcribeText =  data?.results?.channels[0]?.alternatives[0]?.transcript;
 
                 console.log(data)
  const save =     trancribeModel.create({
-    userId:  req.user._id,
+    userId:  req.user.id,
     transcribe :transcribeText,
 fileName : info.filename
   })

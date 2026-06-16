@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken")
 
+
+
 const protectedRoute = ( req, res, next)=>{
 
 
@@ -18,7 +20,8 @@ try {
 const verified = jwt.verify(token , process.env.jwt_SecretKey)
 
 req.user =verified
-console.log(verified)
+console.log(req.user)
+console.log( "verified :=", verified)
 
 next()
 } catch (error) {

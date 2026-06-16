@@ -11,11 +11,12 @@ routes.post('/transcribe',secure, transcribeController)
 
 
 
-routes.post('/my-transcribe' , secure , async (req,res)=>{
+routes.get('/my-transcribe' , secure , async (req,res)=>{
 
 // logic 
- const records=   await Tdata.find({userId: req.user._id})
-//   
+ const records=   await Tdata.find({userId: req.user.id})   // mongo db 
+//   my sql  select * from where  user_id = :user._id    // my sql 
+//     
 //  sort  latest phele aaye 
 
 res.status(200).json({

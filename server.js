@@ -19,9 +19,9 @@ const transcribeRoute = require('./Routes/TranscribeRouter')
 
 app.use('/api' , transcribeRoute);
  
- app.get('/' ,(req , res)=>{
+ app.get('/profile' , protectedRoute,(req , res)=>{
    
-   res.send("hello world ")
+   res.send("hello world proteced ")
  })
 
  app.get('/dashboard',protectedRoute , (req , res)=>{

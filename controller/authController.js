@@ -81,7 +81,7 @@ const login = async (req, res) =>{
 console.log(existingUser.passwords)
 
     const  isMatch=   await bcrypt.compare(passwords , existingUser.passwords );
-
+console.log( " ex._id " ,existingUser._id)
     if (!isMatch) {
         return  res.status(404).Json({
               message: " pls provide a correct passwords",
@@ -89,7 +89,7 @@ console.log(existingUser.passwords)
     }
 
     const userData={
-      id:user._id,
+      id:existingUser._id,
       email
     }
 
