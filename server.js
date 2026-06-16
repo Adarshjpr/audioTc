@@ -23,7 +23,10 @@ app.use('/api' , transcribeRoute);
    
    res.send("hello world proteced ")
  })
-
+ app.get('/' , protectedRoute,(req , res)=>{
+   
+   res.send("hello world  ")
+ })
  app.get('/dashboard',protectedRoute , (req , res)=>{
 
   res.status(200).json({
